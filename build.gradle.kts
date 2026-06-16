@@ -1,55 +1,45 @@
-﻿plugins {
-    kotlin("jvm") version "2.2.10"
+dependencies {
+    compileOnly("de.bluecolored:bluemap-api:2.7.3")
+    compileOnly("com.flowpowered:flow-math:1.0.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+}
+
+plugins {
+    kotlin("jvm") version "2.3.20"
     id("com.typewritermc.module-plugin") version "2.1.0"
 }
 
+group = "btcrenaud"
+version = "0.0.7"
+
 repositories {
+    mavenLocal()
+    maven("https://jitpack.io/")
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.bluecolored.de/releases")
-    maven("https://jitpack.io")
-    flatDir {
-        dir("libs")
-    }
+    maven("https://repo.codemc.io/repository/maven-public/")
+    maven("https://maven.typewritermc.com/beta/")
+    maven("https://maven.typewritermc.com/external/")
+    maven("https://repo.bluecolored.de/releases/")
+    maven("https://repo.bluecolored.de/snapshots/")
 }
-
-dependencies {
-    implementation("com.typewritermc:QuestExtension:0.9.0")
-    implementation("com.typewritermc:BasicExtension:0.9.0")
-    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
-    compileOnly("de.bluecolored:bluemap-api:2.7.3")
-    compileOnly("com.flowpowered:flow-math:1.0.3")
-}
-
-
-
-group = "com.btc.typewriter"
-version = "0.1.0"
 
 typewriter {
-    namespace = "tracking"
+    namespace = "renaud"
 
     extension {
         name = "Tracking"
         shortDescription = "Player tracking system with BlueMap integration"
-        description = """
-            A tracking extension that records player movements in sessions.
-            Features:
-            - Configurable particle tracking for admins.
-            - BlueMap integration to visualize player paths.
-            - Session-based storage using Artifacts.
-            - In-game inspection commands.
-        """.trimIndent()
-        engineVersion = "0.9.0-beta-171"
+        description = """Typewriter extension module providing additional entries for the Typewriter plugin ecosystem. Supports Paper and Folia server platforms with full feature parity. This module extends the core functionality with specialized entries. Compatible with the official Typewriter engine and designed for standalone use."""
+        engineVersion = "0.9.0-beta-174"
         channel = com.typewritermc.moduleplugin.ReleaseChannel.BETA
-
-        dependencies {
-            paper()
-        }
+        paper()
     }
 }
 
-kotlin {
-    jvmToolchain(21)
-}
+    
 
+kotlin {
+    jvmToolchain(25)
+    
+}
