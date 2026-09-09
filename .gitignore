@@ -3,3 +3,12 @@
 # Le moteur Typewriter NE DOIT PAS etre redistribue : sa licence l'interdit
 # explicitement (Typewriter Software License Agreement, 3.1).
 libs/
+
+# Sorties de build regenerees ; jamais suivies.
+build/
+build-out/
+.gradle/
+target/
+*.jar
+*.log
+__pycache__/
