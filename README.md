@@ -1,28 +1,47 @@
 # Tracking Extension
 
 ![Java Version](https://img.shields.io/badge/Java-21-orange)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Target](https://img.shields.io/badge/Target-Paper%20/%20Folia%20/%20BTC--CORE-blue)
+![Target](https://img.shields.io/badge/Target-Paper-blue)
+![Typewriter](https://img.shields.io/badge/Typewriter-0.9.0--beta--177-purple)
 
-**Tracking Extension** is a player monitoring and analytics tool for **TypeWriter**, engineered for **BTC Studio** infrastructure. It records player movements and integrates with mapping tools like BlueMap.
+**Tracking Extension** is a player movement recorder for **TypeWriter**, built for **BTC Studio** infrastructure. It stores sessions of player positions in an artifact and can draw them on BlueMap.
 
 ---
 
 ## 🚀 Key Features
 
-### 🗺️ Visualization & Analytics
-- **BlueMap Integration**: Visualize player paths and sessions directly on the web map.
-- **Session Recording**: Store player movement data in organized sessions using TypeWriter Artifacts.
-
-### 👮 Admin Tools
-- **Particle Tracking**: Visual tracking markers for administrators in-game.
-- **Inspection Commands**: Real-time inspection of player history and status.
+- **Session recording**: positions are recorded at a fixed interval and stored in a Typewriter artifact.
+- **BlueMap integration**: individual points and connected path lines, each switchable.
+- **In-game inspection**: replay a player's session to an administrator with particle markers.
 
 ---
 
+## 🧩 Available Entries
+
+| Type | Entry | Role |
+|---|---|---|
+| Manifest | `tracking_manifest` | `storage`, `pointIntervalSeconds` (default 20), `trackingEnabled`, `blueMapEnabled`, `showBlueMapPoints`, `showBlueMapPath` |
+| Artifact | `tracking_artifact` | Stores the tracking sessions and points |
+
+## ⌨️ Commands and Permissions
+
+`/tracking` (permission `typewriter.tracking.inspect`, players only):
+
+- `/tracking inspect <player> [session]`: without a session, lists the player's sessions; with one, starts the inspection.
+- `/tracking sessions <player>`: lists the player's sessions.
+- `/tracking`: stops the inspection in progress.
+
+---
+
+## 📋 Requirements
+
+- **Typewriter** `0.9.0-beta-177` (with PacketEvents, which Typewriter already requires; the inspection particles are sent through it)
+- **Paper** (no Folia support is promised)
+- Optional: BlueMap, for the map layers
+
 ## ⚙️ Configuration
 
-Tracking Extension configuration is managed via TypeWriter's manifest system.
+Everything is configured from the Typewriter web panel through the `tracking_manifest` entry.
 
 ## 🛠 Building & Deployment
 
@@ -37,8 +56,7 @@ cd Typewriter-TrackingExtension
 ./gradlew clean build
 ```
 
-### Artifact Locations:
-- `build/libs/Tracking-[Version].jar`
+Output: `build/libs/TrackingExtension-<version>.jar`
 
 ---
 
@@ -46,14 +64,9 @@ cd Typewriter-TrackingExtension
 - **[TypeWriter](https://github.com/gabber235/Typewriter)** - The engine this extension is built for.
 - **[BTC Studio](https://github.com/RenaudRl)** - Maintenance and specialized optimizations.
 
----
+## 📖 Documentation
 
-## 📜 License
-Licensed under the **MIT License**.
-
-## Documentation
-
-Full documentation available at [BTC Studio Docs](https://docs.borntocraftstudio.net/extensions/free/tracking/).
+Full documentation: [BTC Studio Docs](https://docs.borntocraftstudio.net/extensions/free/tracking/).
 
 ---
 
